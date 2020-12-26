@@ -1,20 +1,42 @@
 import random
 
-while True:
-    ryrlans = []
-    places = []
+def gettopics():
+    #put text file in the same directory
+    nameoftextfile = "Topics.txt"
+    texto = open(nameoftextfile, "r")
+    a = texto.read()
+    print(a) #test
+    return[i.strip() for i in a.split(",")]
 
-    minryr = int(input("Enter Minimum Ryrlans to be in a group"))
-    maxryr = int(input("Enter Maximum Ryrlans to be in a group"))
-    ryrselected = random.randrange(minryr, maxryr + 1)
-    for i in range(ryrselected):
-        ryrlans.append(random.randrange(1, 22))
+def getchar():
+    #put text file in the same directory
+    nameoftextfile = "Characters.txt"
+    texto = open(nameoftextfile, "r")
+    a = texto.read()
+    print(a) #test
+    return [i.strip() for i in a.split(",")]
 
-    L = ["Donyard", "Ankchers", "Luu", "Radiance", "Chyre-Chavant", "Explorer-Wanderer", "Mice", "Reiri-Sam's House", "Sod-1-Rosarhis", "BOC-Amsek-Psuupe", "Reha", "Kakuka&Drago Guild", "Omri-Rhys Guild", "Echelon", "Horizon", "Onger", "Xiderenj", "Warg", "Auray", "Ophale", "Qaqzae", "Jilm", "Ahero", "Blu", "Ahero", "Exiger Base", "Rafz", "Shiverd-Norka","Fervo", "Fiola", "Central Fye", "Interlaum", "Mentou", "Sydys-Entroka", "OdysseyGuild", "Ryrlan", "Central Skoo"]
 
-    ll = int(input("Enter Number of Topics could be in the chapter"))
-    for j in range(ll):
-        places.append(random.choice(L))
+def select(mainlist, min, max):
+    try:
+        toselect = random.randint(min, max+1)
+        outlist = random.sample(mainlist, toselect)
+        return str(outlist)
+    except ValueError as r:
+        print(r, "\nError 01\n\n\n\n")
+        menu()
+
+def mainloop(Top, Char):
+    minchar = int(input("\n\nEnter Minimum Individuals to be in the chapter"))
+    maxchar = int(input("Enter Maximum Individuals to be in the chapter"))
+    mintop = int(input("Enter Minimum Topics to be in the chapter"))
+    maxtop = int(input("Enter Maximum Topics to be in the chapter"))
 
     k = input("Enter Chapter Number")
-    print(f"Princess: Chapter {k}!! Roll No.! " + str(ryrlans) + " Gooooo " + str(places))
+    print(f"---- Chapter {k} ---- \nMain: {select(Char, minchar, maxchar)} \nSettgs/Topic: {select(Top, mintop, maxtop)}")
+
+def menu():
+    mainloop(gettopics(), getchar())
+
+#GLOBAL
+menu()
