@@ -19,7 +19,7 @@ def getchar():
 
 def select(mainlist, min, max):
     try:
-        toselect = random.randint(min, max+1)
+        toselect = random.randint(min, max)
         outlist = random.sample(mainlist, toselect)
         return str(outlist)
     except ValueError as r:
