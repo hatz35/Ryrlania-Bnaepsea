@@ -1,5 +1,14 @@
 import random
 
+def getword(n):
+    #put text file in the same directory
+    nameoftextfile = "Words.txt"
+    texto = open(nameoftextfile, "r")
+    a = texto.readlines()
+    #print(a) #test
+    for i in range(n):
+        print(random.choice(a))
+
 def gettopics():
     #put text file in the same directory
     nameoftextfile = "Topics.txt"
@@ -33,7 +42,9 @@ def mainloop(Top, Char):
     maxtop = int(input("Enter Maximum Topics to be in the chapter"))
 
     k = input("Enter Chapter Number")
-    print(f"---- Chapter {k} ---- \nMain: {select(Char, minchar, maxchar)} \nSettgs/Topic: {select(Top, mintop, maxtop)}")
+    print(f"---- Chapter {k} ---- \nMain: {select(Char, minchar, maxchar)} \nSettgs/Topic: {select(Top, mintop, maxtop)}\n")
+    #print("\n")
+    #getword(random.randint(1, 10))
 
 def menu():
     mainloop(gettopics(), getchar())
