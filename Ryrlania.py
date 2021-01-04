@@ -1,5 +1,26 @@
 import random
 
+num = int(input("How many times you wanna do?"))
+isFast = False
+
+def clear_screen():
+    print("\033[H\033[J")
+
+while True:
+    kk = input("Wanna do Fast?\n Press 1 for Yes\n Press 2 for No\n")
+
+    if kk == "1":
+        isFast = True
+        break
+    elif kk == "2":
+        isFast = False
+        break
+    else:
+        print("Try Again")
+
+k = input("Enter Chapter Number")
+
+clear_screen()
 def getword(n):
     #put text file in the same directory
     nameoftextfile = "Words.txt"
@@ -36,15 +57,23 @@ def select(mainlist, min, max):
         menu()
 
 def mainloop(Top, Char):
-    minchar = int(input("\n\nEnter Minimum Individuals to be in the chapter"))
-    maxchar = int(input("Enter Maximum Individuals to be in the chapter"))
-    mintop = int(input("Enter Minimum Topics to be in the chapter"))
-    maxtop = int(input("Enter Maximum Topics to be in the chapter"))
+    for i in range(num):
+        if isFast == False:
+            minchar = int(input("\n\nEnter Minimum Individuals to be in the chapter"))
+            maxchar = int(input("Enter Maximum Individuals to be in the chapter"))
+            mintop = int(input("Enter Minimum Topics to be in the chapter"))
+            maxtop = int(input("Enter Maximum Topics to be in the chapter"))
 
-    k = input("Enter Chapter Number")
-    print(f"---- Chapter {k} ---- \nMain: {select(Char, minchar, maxchar)} \nSettgs/Topic: {select(Top, mintop, maxtop)}\n")
-    #print("\n")
-    #getword(random.randint(1, 10))
+            print(f"---- Chapter {k} ---- \nMain: {select(Char, minchar, maxchar)} \nSettgs/Topic: {select(Top, mintop, maxtop)}\n")
+            #print("\n")
+            #getword(random.randint(1, 10))
+        else:
+            minchar = random.randrange(1, 5)
+            maxchar = random.randrange(minchar+1, 10)
+            mintop = random.randrange(1,6)
+            maxtop = random.randrange(mintop+1,10)
+            print(f"---- Chapter {k} ---- \nMain: {select(Char, minchar, maxchar)} \nSettgs/Topic: {select(Top, mintop, maxtop)}\n")
+
 
 def menu():
     mainloop(gettopics(), getchar())
